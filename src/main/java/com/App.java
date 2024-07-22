@@ -20,7 +20,7 @@ public class App
         // Initialize the 2D array with pixel values (ARGB format)
         for (int x = 0; x < worldX; x++) {
             for (int y = 0; y < worldY; y++) {
-                int value = (int)((0.5 + noiseGenerator.noise(x, y) * 0.5) * worldZ);
+                int value = (int)((0.5 + noiseGenerator.noise(x, y, 35) * 0.5) * worldZ);
                 // Ensure n is within the range [0, maxN]
                 value = Math.max(0, Math.min(value, worldZ));
                 pixels[x][y] = value;

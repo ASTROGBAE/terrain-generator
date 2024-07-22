@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class NoiseGenerator {
     private double seed;
-	private long default_size;
 	private int[] p;
 	private int[] permutation;
 
@@ -41,7 +40,6 @@ public class NoiseGenerator {
 				84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254, 138, 236,
 				205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66,
 				215, 61, 156, 180 };
-		this.default_size = 35;
 
 		// Populate it
 		for (int i = 0; i < 256; i++) {
@@ -58,34 +56,8 @@ public class NoiseGenerator {
 		return this.seed;
 	}
 
-	public double noise(double x, double y, double z, int size) {
+	public double noise(double x, double y, double size) {
 		double value = 0.0;
-		double initialSize = size;
-
-		while (size >= 1) {
-			value += smoothNoise((x / size), (y / size), (z / size)) * size;
-			size /= 2.0;
-		}
-
-		return value / initialSize;
-	}
-
-	public double noise(double x, double y, double z) {
-		double value = 0.0;
-		double size = default_size;
-		double initialSize = size;
-
-		while (size >= 1) {
-			value += smoothNoise((x / size), (y / size), (z / size)) * size;
-			size /= 2.0;
-		}
-
-		return value / initialSize;
-	}
-
-	public double noise(double x, double y) {
-		double value = 0.0;
-		double size = default_size;
 		double initialSize = size;
 
 		while (size >= 1) {
@@ -95,19 +67,6 @@ public class NoiseGenerator {
 
 		return value / initialSize;
 	}
-
-    public double noise(double x) {
-        double value = 0.0;
-        double size = default_size;
-        double initialSize = size;
-
-        while (size >= 1) {
-            value += smoothNoise((x / size), (0f / size), (0f / size)) * size;
-            size /= 2.0;
-        }
-
-        return value / initialSize;
-    }
 
 	public double smoothNoise(double x, double y, double z) {
 		// Offset each coordinate by the seed value
