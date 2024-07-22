@@ -1,6 +1,7 @@
 package com;
 
 import java.io.File;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -11,11 +12,15 @@ public class App
         int worldX = 500;
         int worldY = 500;
         int worldZ = 200;
-        Terrain terrain = new Terrain(worldX, worldY, worldZ);
+        Terrain terrainGenerator = new Terrain(worldX, worldY, worldZ);
+        Ocean oceanGenerator = new Ocean(worldX, worldY, worldZ);
         Gradient gradient = new Gradient();
 
-        // create terrain map
-        int[][] map = terrain.generate();
+        // create terrain maps
+        int[][] terrain = terrainGenerator.generate();
+        int[][] ocean = oceanGenerator.generate(terrain);
+
+        // create ocean map
 
         // Create a BufferedImage object
         BufferedImage image = new BufferedImage(worldX, worldY, BufferedImage.TYPE_INT_ARGB);
@@ -23,7 +28,13 @@ public class App
         // Set pixel values in the BufferedImage
         for (int x = 0; x < worldX; x++) {
             for (int y = 0; y < worldY; y++) {
-                image.setRGB(x, y, gradient.value(map[x][y], worldZ));
+                // draw an ocean if it exists, or a gradiated terrain, otherwise
+                if (ocean[x][y] == 1) {
+                    image.setRGB(x, y, new Color(44, 85, 92).getRGB());
+                }
+                else {
+                    image.setRGB(x, y, gradient.value(terrain[x][y], worldZ));
+                }
             }
         }
 
