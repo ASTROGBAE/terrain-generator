@@ -56,16 +56,16 @@ public class NoiseGenerator {
 		return this.seed;
 	}
 
-	// create a 2D noise map of dimensions x, y wide, and z high. Noise size variable
-	public int[][] noiseMap(int x, int y, int z, double size) {
-		int[][] map = new int[x][y];
+	// create a 2D noise map of dimensions worldX, y wide, and z high. Noise size variable
+	public int[][] noiseMap(int worldX, int worldY, int worldZ, double size) {
+		int[][] map = new int[worldX][worldY];
 		NoiseGenerator noiseGenerator = new NoiseGenerator();
 		// Initialize the 2D array with pixel values (ARGB format)
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
-				int value = noiseGenerator.noise(i, j, z, size);
+		for (int i = 0; i < worldX; i++) {
+			for (int j = 0; j < worldY; j++) {
+				int value = noiseGenerator.noise(i, j, worldZ, size);
 				// Ensure n is within the range [0, maxN]
-				value = Math.max(0, Math.min(value, z));
+				value = Math.max(0, Math.min(value, worldZ));
 				map[i][j] = value;
 			}
 		}
@@ -132,10 +132,10 @@ public class NoiseGenerator {
 		return a + t * (b - a);
 	}
 
-	private double grad(int hash, double x, double y, double z) {
+	private double grad(int hash, double worldX, double worldY, double worldZ) {
 		int h = hash & 15; // CONVERT LO 4 BITS OF HASH CODE
-		double u = h < 8 ? x : y, // INTO 12 GRADIENT DIRECTIONS.
-		v = h < 4 ? y : h == 12 || h == 14 ? x : z;
+		double u = h < 8 ? worldX : worldY, // INTO 12 GRADIENT DIRECTIONS.
+		v = h < 4 ? worldY : h == 12 || h == 14 ? worldX : worldZ;
 		return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
 	}
 }

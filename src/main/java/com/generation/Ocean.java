@@ -1,26 +1,26 @@
 package com.generation;
 
 public class Ocean {
-    private int x;
-    private int y;
+    private int worldX;
+    private int worldY;
     private int seaLevel;
 
-    public Ocean(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.seaLevel = z / 3;
+    public Ocean(int worldX, int worldY, int worldZ) {
+        this.worldX = worldX;
+        this.worldY = worldY;
+        this.seaLevel = worldZ / 3;
     }
 
     public int[][] generate(int[][] terrain) {
-        int[][] ocean = new int[x][y];
-        for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
+        int[][] ocean = new int[worldX][worldY];
+        for (int x = 0; x < worldX; x ++) {
+			for (int y = 0; y < worldY; y ++) {
                 // add ocean (1) if terrain is below the sea level, 0, otherwise
-                if (terrain[i][j] <= seaLevel) {
-                    ocean[i][j] = 1;
+                if (terrain[x][y] <= seaLevel) {
+                    ocean[x][y] = 1;
                 }
                 else {
-                    ocean[i][j] = 0;
+                    ocean[x][y] = 0;
                 }
             }
         }
