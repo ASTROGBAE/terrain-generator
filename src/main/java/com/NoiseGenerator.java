@@ -56,6 +56,22 @@ public class NoiseGenerator {
 		return this.seed;
 	}
 
+	// create a 2D noise map of dimensions x, y wide, and z high. Noise size variable
+	public int[][] noiseMap(int x, int y, int z, double size) {
+		int[][] map = new int[x][y];
+		NoiseGenerator noiseGenerator = new NoiseGenerator();
+		// Initialize the 2D array with pixel values (ARGB format)
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				int value = (int)((0.5 + noiseGenerator.noise(i, j, 35) * 0.5) * z);
+				// Ensure n is within the range [0, maxN]
+				value = Math.max(0, Math.min(value, z));
+				map[i][j] = value;
+			}
+		}
+		return map;
+	}
+
 	public double noise(double x, double y, double size) {
 		double value = 0.0;
 		double initialSize = size;

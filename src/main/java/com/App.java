@@ -14,18 +14,8 @@ public class App
         NoiseGenerator noiseGenerator = new NoiseGenerator();
         Gradient gradient = new Gradient();
 
-        // Create a 2D array to hold pixel values
-        int[][] pixels = new int[worldX][worldY];
-
-        // Initialize the 2D array with pixel values (ARGB format)
-        for (int x = 0; x < worldX; x++) {
-            for (int y = 0; y < worldY; y++) {
-                int value = (int)((0.5 + noiseGenerator.noise(x, y, 35) * 0.5) * worldZ);
-                // Ensure n is within the range [0, maxN]
-                value = Math.max(0, Math.min(value, worldZ));
-                pixels[x][y] = value;
-            }
-        }
+        // create terrain map
+        int[][] map = noiseGenerator.noiseMap(worldX, worldY, worldZ, worldZ);
 
         // Create a BufferedImage object
         BufferedImage image = new BufferedImage(worldX, worldY, BufferedImage.TYPE_INT_ARGB);
@@ -33,7 +23,7 @@ public class App
         // Set pixel values in the BufferedImage
         for (int x = 0; x < worldX; x++) {
             for (int y = 0; y < worldY; y++) {
-                image.setRGB(x, y, gradient.value(pixels[x][y], worldZ));
+                image.setRGB(x, y, gradient.value(map[x][y], worldZ));
             }
         }
 
