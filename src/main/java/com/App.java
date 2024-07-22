@@ -8,14 +8,14 @@ public class App
 {
     public static void main(String[] args) {
         // Define the width and height of the image
-        int worldX = 200;
-        int worldY = 200;
+        int worldX = 500;
+        int worldY = 500;
         int worldZ = 200;
-        NoiseGenerator noiseGenerator = new NoiseGenerator();
+        Terrain terrain = new Terrain(worldX, worldY, worldZ);
         Gradient gradient = new Gradient();
 
         // create terrain map
-        int[][] map = noiseGenerator.noiseMap(worldX, worldY, worldZ, worldZ);
+        int[][] map = terrain.generate();
 
         // Create a BufferedImage object
         BufferedImage image = new BufferedImage(worldX, worldY, BufferedImage.TYPE_INT_ARGB);

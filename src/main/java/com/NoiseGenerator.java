@@ -63,7 +63,7 @@ public class NoiseGenerator {
 		// Initialize the 2D array with pixel values (ARGB format)
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				int value = (int)((0.5 + noiseGenerator.noise(i, j, 35) * 0.5) * z);
+				int value = noiseGenerator.noise(i, j, z, size);
 				// Ensure n is within the range [0, maxN]
 				value = Math.max(0, Math.min(value, z));
 				map[i][j] = value;
@@ -72,7 +72,7 @@ public class NoiseGenerator {
 		return map;
 	}
 
-	public double noise(double x, double y, double size) {
+	public int noise(double x, double y, double z, double size) {
 		double value = 0.0;
 		double initialSize = size;
 
@@ -81,7 +81,12 @@ public class NoiseGenerator {
 			size /= 2.0;
 		}
 
-		return value / initialSize;
+		Double raw = value / initialSize;
+
+		// the raw value is roughly between -1 and 1, but not entirely. 
+		// It is further formatted to an int of a height between 0 and z
+
+		return (int)((0.5 + raw * 0.5) * z);
 	}
 
 	public double smoothNoise(double x, double y, double z) {
