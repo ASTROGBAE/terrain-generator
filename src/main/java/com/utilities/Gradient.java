@@ -1,4 +1,4 @@
-package com;
+package com.utilities;
 
 import java.awt.Color;
 

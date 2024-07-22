@@ -1,4 +1,6 @@
-package com;
+package com.generation;
+
+import com.utilities.NoiseGenerator;
 
 public class Terrain {
     private int x;

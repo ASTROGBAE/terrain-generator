@@ -1,4 +1,4 @@
-package com;
+package com.generation;
 
 public class Ocean {
     private int x;

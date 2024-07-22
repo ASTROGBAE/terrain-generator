@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+import com.generation.Ocean;
+import com.generation.Terrain;
+import com.utilities.Gradient;
+
 public class App 
 {
     public static void main(String[] args) {
