@@ -17,7 +17,7 @@ public class Ocean {
 			for (int y = 0; y < worldY; y ++) {
                 // add ocean (1) if terrain is below the sea level, 0, otherwise
                 if (terrain[x][y] <= seaLevel) {
-                    ocean[x][y] = 1;
+                    ocean[x][y] = terrain[x][y];
                 }
                 else {
                     ocean[x][y] = 0;

@@ -9,8 +9,7 @@ import com.generation.Ocean;
 import com.generation.Terrain;
 import com.utilities.Gradient;
 
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         // Define the width and height of the image
         int worldX = 500;
@@ -20,7 +19,10 @@ public class App
         Ocean oceanGenerator = new Ocean(worldX, worldY, worldZ);
         Color forestGreen = new Color(63, 84, 41);
         Color snowyWhite = new Color(222, 221, 220);
+        Color turquiose = new Color(53, 156, 132);
+        Color deepBlue = new Color(30, 53, 66);
         Gradient terrainGradient = new Gradient(forestGreen, snowyWhite);
+        Gradient oceanGradient = new Gradient(deepBlue, turquiose);
 
         // create terrain maps
         int[][] terrain = terrainGenerator.generate();
@@ -35,8 +37,8 @@ public class App
         for (int x = 0; x < worldX; x++) {
             for (int y = 0; y < worldY; y++) {
                 // draw an ocean if it exists, or a gradiated terrain, otherwise
-                if (ocean[x][y] == 1) {
-                    image.setRGB(x, y, new Color(44, 85, 92).getRGB());
+                if (ocean[x][y] != 0) {
+                    image.setRGB(x, y, oceanGradient.value(ocean[x][y], worldZ));
                 }
                 else {
                     image.setRGB(x, y, terrainGradient.value(terrain[x][y], worldZ));
