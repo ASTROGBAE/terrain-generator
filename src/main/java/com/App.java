@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.generation.Ocean;
-import com.generation.Terrain;
+import com.generation.Elevation;
 import com.utilities.Gradient;
 
 public class App {
@@ -15,7 +15,7 @@ public class App {
         int worldX = 500;
         int worldY = 500;
         int worldZ = 200;
-        Terrain terrainGenerator = new Terrain(worldX, worldY, worldZ);
+        Elevation terrainGenerator = new Elevation(worldX, worldY, worldZ);
         Ocean oceanGenerator = new Ocean(worldX, worldY, worldZ);
         Color forestGreen = new Color(63, 84, 41);
         Color snowyWhite = new Color(222, 221, 220);

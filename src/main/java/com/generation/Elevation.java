@@ -1,17 +1,9 @@
 package com.generation;
 
-import com.utilities.NoiseGenerator;
+public class Elevation extends Generation {
 
-public class Terrain {
-    private int worldX;
-    private int worldY;
-    private int worldZ;
-    NoiseGenerator noiseGenerator = new NoiseGenerator();
-
-    public Terrain(int worldX, int worldY, int worldZ) {
-        this.worldX = worldX;
-        this.worldY = worldY;
-        this.worldZ = worldZ;
+    public Elevation(int worldX, int worldY, int worldZ) {
+        super(worldX, worldY, worldZ);
     }
 
     public int[][] generate() {

@@ -1,13 +1,10 @@
 package com.generation;
 
-public class Ocean {
-    private int worldX;
-    private int worldY;
+public class Ocean extends Generation {
     private int seaLevel;
 
     public Ocean(int worldX, int worldY, int worldZ) {
-        this.worldX = worldX;
-        this.worldY = worldY;
+        super(worldX, worldY, worldZ);
         this.seaLevel = worldZ / 3;
     }
 

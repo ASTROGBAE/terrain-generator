@@ -6,6 +6,8 @@ public class NoiseGenerator {
     private double seed;
 	private int[] p;
 	private int[] permutation;
+	// singleton instance
+	private static NoiseGenerator instance = null;
 
 	public NoiseGenerator(double seed) {
 		this.seed = seed;
@@ -16,6 +18,13 @@ public class NoiseGenerator {
 		this.seed = new Random().nextGaussian() * 255;
 		init();
 	}
+
+	// get singleton class
+
+	public static synchronized NoiseGenerator getInstance() {
+        if (instance == null) instance = new NoiseGenerator();
+		return instance;
+    }
 
 	private void init() {
 		// Initialize the permutation array.
