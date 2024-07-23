@@ -1,13 +1,12 @@
 package com;
 
 import java.io.File;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.generation.Ocean;
 import com.generation.Elevation;
-import com.utilities.Gradient;
+import com.utilities.PaintData;
 
 public class App {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class App {
         int worldZ = 200;
         Elevation terrainGenerator = new Elevation(worldX, worldY, worldZ);
         Ocean oceanGenerator = new Ocean(worldX, worldY, worldZ);
-        Gradient gradient = Gradient.getInstance();
+        PaintData painter = PaintData.getInstance();
 
         // create terrain maps
         int[][] terrain = terrainGenerator.generate();
@@ -25,27 +24,8 @@ public class App {
 
         // create ocean map
 
-        // Create a BufferedImage object
-        BufferedImage image = new BufferedImage(worldX, worldY, BufferedImage.TYPE_INT_ARGB);
-
-        // colours for world generation
-        Color forestGreen = new Color(63, 84, 41);
-        Color snowyWhite = new Color(222, 221, 220);
-        Color turquiose = new Color(53, 156, 132);
-        Color deepBlue = new Color(30, 53, 66);
-
-        // Set pixel values in the BufferedImage
-        for (int x = 0; x < worldX; x++) {
-            for (int y = 0; y < worldY; y++) {
-                // draw an ocean if it exists, or a gradiated terrain, otherwise
-                if (ocean[x][y] != 0) {
-                    image.setRGB(x, y, gradient.value(turquiose, deepBlue, ocean[x][y], worldZ));
-                }
-                else {
-                    image.setRGB(x, y, gradient.value(forestGreen, snowyWhite, terrain[x][y], worldZ));
-                }
-            }
-        }
+        // Generate and color a BufferedImage object
+        BufferedImage image = painter.paint(terrain, ocean, worldZ);
 
         // Save the image to a file
         try {
