@@ -18,7 +18,9 @@ public class App
         int worldZ = 200;
         Terrain terrainGenerator = new Terrain(worldX, worldY, worldZ);
         Ocean oceanGenerator = new Ocean(worldX, worldY, worldZ);
-        Gradient gradient = new Gradient();
+        Color forestGreen = new Color(63, 84, 41);
+        Color snowyWhite = new Color(222, 221, 220);
+        Gradient terrainGradient = new Gradient(forestGreen, snowyWhite);
 
         // create terrain maps
         int[][] terrain = terrainGenerator.generate();
@@ -37,7 +39,7 @@ public class App
                     image.setRGB(x, y, new Color(44, 85, 92).getRGB());
                 }
                 else {
-                    image.setRGB(x, y, gradient.value(terrain[x][y], worldZ));
+                    image.setRGB(x, y, terrainGradient.value(terrain[x][y], worldZ));
                 }
             }
         }

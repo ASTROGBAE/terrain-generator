@@ -4,8 +4,13 @@ import java.awt.Color;
 
 public class Gradient {
 
-    Color startColor = new Color(63, 84, 41);
-    Color endColor = new Color(222, 221, 220);
+    Color startColor;
+    Color endColor;
+
+    public Gradient(Color startColor, Color endColor) {
+        this.startColor = startColor;
+        this.endColor = endColor;
+    }
 
     public int value(int n, int maxN) {
         // Ensure n is within the range [0, maxN]
