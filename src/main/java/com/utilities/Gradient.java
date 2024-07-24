@@ -34,8 +34,7 @@ public class Gradient {
         ) {
         int start = getColourComponent(startColor, color);
         int end = getColourComponent(endColor, color);
-        int deviation = (int)(rate * Math.sin(rate * 15 * ratio) * 4);
-        int value = (int) (start * (1 - ratio) + end * ratio * Math.pow(rate, 2)) + deviation;
+        int value = (int) (start * (1 - ratio) + end * ratio);
         // return into in bounds
         return Math.max(0, Math.min(value, 255));
     }

@@ -11,11 +11,11 @@ public class PaintData {
 
     // colours for world generation
     // terrain start to end
-    Color forestGreen = new Color(63, 84, 41);
-    Color snowyWhite = new Color(222, 221, 220);
+    Color forestGreen = new Color(62, 105, 59);
+    Color muddyGreen = new Color(141, 161, 95);
     // ocean start to end
-    Color turquiose = new Color(53, 156, 132);
-    Color deepBlue = new Color(30, 53, 66);
+    Color turquiose = new Color(14, 161, 122);
+    Color deepBlue = new Color(21, 78, 94);
 
     // get singleton class
 	public static synchronized PaintData getInstance() {
@@ -36,10 +36,10 @@ public class PaintData {
                     for (int y = 0; y < worldY; y++) {
                         // draw an ocean if it exists, or a gradiated terrain, otherwise
                         if (ocean[x][y] != 0) {
-                            image.setRGB(x, y, gradient.value(turquiose, deepBlue, ocean[x][y], worldHeight));
+                            image.setRGB(x, y, gradient.value(deepBlue, turquiose, ocean[x][y], worldHeight));
                         }
                         else {
-                            image.setRGB(x, y, gradient.value(forestGreen, snowyWhite, terrain[x][y], worldHeight));
+                            image.setRGB(x, y, gradient.value(forestGreen, muddyGreen, terrain[x][y], worldHeight));
                         }
                     }
                 }
